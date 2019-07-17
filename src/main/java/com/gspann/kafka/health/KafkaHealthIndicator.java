@@ -28,7 +28,6 @@ public class KafkaHealthIndicator implements HealthIndicator {
 	@Override
 	public Health health() {
 		try {
-			System.out.println("Kafka health");
 			kafka.send("kafka-health-indicator", "❥").get(100, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException | ExecutionException | TimeoutException e) {
 			return Health.down(e).build();
